@@ -4,6 +4,8 @@ import com.example.quizapp.dtos.*;
 import com.example.quizapp.exception.ResourceNotFoundException;
 import com.example.quizapp.models.*;
 import com.example.quizapp.repositories.QuizRepository;
+import com.example.quizapp.repositories.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ public class QuizService {
     private QuizRepository quizRepository;
 
     public QuizResponseDTO createQuiz(QuizRequestDTO dto) {
+
         List<Question> questionEntities = dto.getQuestions().stream()
                 .map(q -> new Question(q.getQuestionText(), q.getOptions(), q.getCorrectAnswer())).toList();
 
