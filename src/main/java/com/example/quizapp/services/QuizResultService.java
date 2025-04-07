@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.quizapp.dtos.QuizResultRequestDTO;
 import com.example.quizapp.dtos.QuizResultResponseDTO;
+import com.example.quizapp.exception.ResourceNotFoundException;
 import com.example.quizapp.models.QuizResult;
 import com.example.quizapp.repositories.QuizResultRepository;
 
@@ -43,4 +44,30 @@ public class QuizResultService {
                 result.getScore(),
                 result.getSubmittedAt())).collect(Collectors.toList());
     }
+
+    // Get all results by attendeeId
+    public List<QuizResultResponseDTO> getResultsByAttendeeId(String attendeeId) {
+        List<QuizResult> results = quizResultRepository.findByAttendeeId(attendeeId);
+        return results.stream().map(result -> new QuizResultResponseDTO(
+                result.getId(),
+                result.getQuizId(),
+                result.getAttendeeId(),
+                result.getScore(),
+                result.getSubmittedAt())).collect(Collectors.toList());
+    }
+
+    // Get single result by quizId and attendeeId
+    public QuizResultResponseDTO getResultByQuizIdAndAttendeeId(String quizId, String attendeeId) {
+        QuizResult result = quizResultRepository.findByQuizIdAndAttendeeId(quizId, attendeeId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Result not found for quizId: " + quizId + " and attendeeId: " + attendeeId));
+
+        return new QuizResultResponseDTO(
+                result.getId(),
+                result.getQuizId(),
+                result.getAttendeeId(),
+                result.getScore(),
+                result.getSubmittedAt());
+    }
+
 }
