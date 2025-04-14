@@ -2,7 +2,6 @@ package com.example.quizapp.controllers;
 
 import com.example.quizapp.dtos.QuizRequestDTO;
 import com.example.quizapp.dtos.QuizResponseDTO;
-import com.example.quizapp.models.Quiz;
 import com.example.quizapp.services.QuizService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
