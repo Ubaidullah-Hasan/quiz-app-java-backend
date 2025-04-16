@@ -20,11 +20,11 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
+        System.out.println("email");
     }
 
     @GetMapping("/by-email/{email}")
     public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
-        System.out.println(email);
         try {
             UserDTO user = userService.getUserByEmail(email);
             return ResponseEntity.ok(user);

@@ -105,7 +105,7 @@ public class SecurityConfig {
                                 // Configure authorization rules
                                 .authorizeHttpRequests(auth -> auth
                                                 // Public endpoints
-                                                .requestMatchers("/", "/public/**", "/api/auth/**").permitAll()
+                                                .requestMatchers("/", "/public/**", "/api/auth/**", "/**").permitAll()
                                                 // All other endpoints require authentication
                                                 .anyRequest().authenticated())
 
