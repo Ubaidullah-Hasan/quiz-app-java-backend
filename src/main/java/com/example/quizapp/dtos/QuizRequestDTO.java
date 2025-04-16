@@ -10,7 +10,7 @@ public class QuizRequestDTO {
     private String subject;
 
     @NotEmpty(message = "At least 1 question is required")
-    @Size(min = 10, max = 10, message = "Exactly 10 questions required")
+    @Size(min = 1, message = "Exactly 10 questions required")
     private List<QuestionDTO> questions;
 
     @NotBlank(message = "CreatedBy (User ID) is required")
